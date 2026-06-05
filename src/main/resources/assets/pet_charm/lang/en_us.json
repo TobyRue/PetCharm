@@ -1,0 +1,9 @@
+{
+  "item.pet_charm.pet_charm": "Pet Charm",
+  "item.pet_charm.pet_charm.action.bind": "Pet Bound",
+  "item.pet_charm.pet_charm.action.revive": "Pet Revived",
+  "item.pet_charm.pet_charm.action.teleport": "Pet Teleported",
+  "item.pet_charm.pet_charm.tooltip.stored_mob": "Pet: %s (%s)",
+  "item.pet_charm.pet_charm.tooltip.stored_uuid": "UUID: %s",
+  "item.pet_charm.pet_charm.tooltip.stored_owner": "Owner: %s"
+}
