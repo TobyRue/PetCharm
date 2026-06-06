@@ -2,14 +2,18 @@ package io.github.tobyrue.pet_charm;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.gui.screens.inventory.CreativeInventoryListener;
+import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -42,7 +46,7 @@ public class PetCharm {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
-    public static final RegistryObject<Item> PET_CHARM = ITEMS.register("pet_charm", () -> new PetCharmItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item> PET_CHARM = ITEMS.register("pet_charm", () -> new PetCharmItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1).fireResistant().rarity(Rarity.EPIC).tab(CreativeModeTab.TAB_TOOLS)));
 
     public PetCharm(FMLJavaModLoadingContext context)
     {
@@ -58,8 +62,7 @@ public class PetCharm {
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
+    private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
 //        LOGGER.info("HELLO FROM COMMON SETUP");
 //
@@ -73,16 +76,14 @@ public class PetCharm {
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {
+    public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
 //        LOGGER.info("HELLO from server starting");
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
+    public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 

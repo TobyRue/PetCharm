@@ -1,5 +1,8 @@
 package io.github.tobyrue.pet_charm;
 
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -56,10 +59,17 @@ public class ModEvents {
 
                     player.displayClientMessage(Component.translatable(PetCharm.PET_CHARM.get().getDescriptionId() + ".action.bind"), true);
 
+                    for(int i = 0; i < 7; ++i) {
+                        double d0 = mob.getRandom().nextGaussian() * 0.02D;
+                        double d1 = mob.getRandom().nextGaussian() * 0.02D;
+                        double d2 = mob.getRandom().nextGaussian() * 0.02D;
+                        mob.level.addParticle(ParticleTypes.HEART, mob.getRandomX(1.0D), mob.getRandomY() + 0.5D, mob.getRandomZ(1.0D), d0, d1, d2);
+                    }
+
                     event.setCancellationResult(InteractionResult.SUCCESS);
                     event.setCanceled(true);
                 }
             }
         }
-    }
+    } 
 }
